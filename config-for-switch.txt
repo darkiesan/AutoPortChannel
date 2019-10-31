@@ -1,0 +1,15 @@
+#
+# Example how to use AutoPortChannel for Ethernet3. Merge config with existing switch config.
+#
+
+!
+event-handler AutoPortChannel1
+   trigger on-intf Ethernet3 operstatus
+   action bash /mnt/flash/AutoPortChannel/autoportchannel.py $INTF $OPERSTATE
+!
+interface Ethernet3
+   spanning-tree portfast edge
+!
+management api http-commands
+   protocol unix-socket
+!
